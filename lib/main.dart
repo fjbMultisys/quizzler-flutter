@@ -8,7 +8,13 @@ class Quizzler extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.grey.shade900,
+        appBar: AppBar(
+          title: Center(
+            child: Text(''),
+          ),
+          backgroundColor: Colors.red,
+        ),
+        backgroundColor: Colors.white,
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -29,7 +35,9 @@ class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
 
   List<Question> questionBank = [
-    Question(q: 'You can lead a cow down stairs but not up stairs.', a: false),
+    Question(
+        q: 'I experience shortness of breath or difficulty of breathing',
+        a: true),
     Question(
         q: 'Approximately one quarter of human bones are in the feet.',
         a: true),
@@ -44,6 +52,13 @@ class _QuizPageState extends State<QuizPage> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
+        SizedBox(
+          height: 120.0,
+          width: 150.0,
+          child: Image(
+            image: AssetImage('images/covid19List.jpeg'),
+          ),
+        ),
         //MARK: This is where the QUESTION text will go.
         Expanded(
           flex: 5,
@@ -55,7 +70,7 @@ class _QuizPageState extends State<QuizPage> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
-                  color: Colors.white,
+                  color: Colors.black,
                 ),
               ),
             ),
