@@ -1,7 +1,8 @@
 import 'question.dart';
 
 class QuizBrain {
-  List<Question> questionBank = [
+  // adding an underscore _ makes the class private _^
+  List<Question> _questionBank = [
     Question(
         q: 'Do you have a fever, or have you felt feverish recently?', a: true),
     Question(q: 'Do you have a cough?', a: true),
@@ -28,4 +29,12 @@ class QuizBrain {
         a: true),
     Question(q: 'Have you been tested for COVID-19?', a: true),
   ];
+
+  String getQuestionText(int questionNumber) {
+    return _questionBank[questionNumber].questionText;
+  }
+
+  bool getCorrectAnswer(int questionNumber) {
+    return _questionBank[questionNumber].questionAnswer;
+  }
 }

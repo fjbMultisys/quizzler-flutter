@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'question.dart';
+import 'quiz_brain.dart';
+
+QuizBrain quizBrain = QuizBrain();
 
 void main() => runApp(Quizzler());
 
@@ -33,7 +35,6 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
-
   int questionNumber = 0;
 
   @override
@@ -56,7 +57,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questionBank[questionNumber].questionText,
+                quizBrain.getQuestionText(questionNumber),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -84,8 +85,7 @@ class _QuizPageState extends State<QuizPage> {
                 //TODO: The user picked true.
 
                 // check if user answer is Correct or NOT
-                bool correctAnswer =
-                    questionBank[questionNumber].questionAnswer;
+                bool correctAnswer = quizBrain.getCorrectAnswer(questionNumber);
                 if (correctAnswer == true) {
                   print('user got it right');
                 } else {
@@ -118,8 +118,7 @@ class _QuizPageState extends State<QuizPage> {
                 //The user picked false.
 
                 // check if user answer is Correct or NOT
-                bool correctAnswer =
-                    questionBank[questionNumber].questionAnswer;
+                bool correctAnswer = quizBrain.getCorrectAnswer(questionNumber);
                 if (correctAnswer == true) {
                   print('user got it right');
                 } else {
