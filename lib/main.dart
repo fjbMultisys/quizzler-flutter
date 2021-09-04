@@ -35,7 +35,6 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
-  int questionNumber = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +56,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBrain.getQuestionText(questionNumber),
+                quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -85,7 +84,7 @@ class _QuizPageState extends State<QuizPage> {
                 //TODO: The user picked true.
 
                 // check if user answer is Correct or NOT
-                bool correctAnswer = quizBrain.getCorrectAnswer(questionNumber);
+                bool correctAnswer = quizBrain.getCorrectAnswer();
                 if (correctAnswer == true) {
                   print('user got it right');
                 } else {
@@ -94,8 +93,7 @@ class _QuizPageState extends State<QuizPage> {
 
                 // increase questionNumber and move to NEXT
                 setState(() {
-                  questionNumber++;
-                  print(questionNumber);
+                  quizBrain.nextQuestion();
                 });
               },
             ),
@@ -118,7 +116,7 @@ class _QuizPageState extends State<QuizPage> {
                 //The user picked false.
 
                 // check if user answer is Correct or NOT
-                bool correctAnswer = quizBrain.getCorrectAnswer(questionNumber);
+                bool correctAnswer = quizBrain.getCorrectAnswer();
                 if (correctAnswer == true) {
                   print('user got it right');
                 } else {
@@ -127,8 +125,7 @@ class _QuizPageState extends State<QuizPage> {
 
                 // increase questionNumber and move to NEXT
                 setState(() {
-                  questionNumber++;
-                  print(questionNumber);
+                  quizBrain.nextQuestion();
                 });
               },
             ),
