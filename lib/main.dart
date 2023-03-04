@@ -1,22 +1,17 @@
 import 'package:flutter/material.dart';
+import 'question.dart';
 import 'quiz_brain.dart';
 
-QuizBrain quizBrain = QuizBrain();
-
 void main() => runApp(Quizzler());
+
+QuizBrain quizBrain = QuizBrain();
 
 class Quizzler extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Center(
-            child: Text(''),
-          ),
-          backgroundColor: Colors.red,
-        ),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey.shade900,
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -36,44 +31,12 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
 
-  void checkAnswer(bool userPickedAnswer) {
-    // check if user answer is Correct or NOT
-    bool correctAnswer = quizBrain.getCorrectAnswer();
-
-    setState(() {
-      if (userPickedAnswer == correctAnswer) {
-        print('user got it right');
-        scoreKeeper.add(Icon(
-          Icons.check,
-          color: Colors.green,
-        ));
-      } else {
-        print('user got it wrong');
-        scoreKeeper.add(Icon(
-          Icons.close,
-          color: Colors.red,
-        ));
-      }
-
-      // increase questionNumber and move to NEXT
-      quizBrain.nextQuestion();
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        SizedBox(
-          height: 120.0,
-          width: 150.0,
-          child: Image(
-            image: AssetImage('images/covid19List.jpeg'),
-          ),
-        ),
-        //MARK: This is where the QUESTION text will go.
         Expanded(
           flex: 5,
           child: Padding(
@@ -84,19 +47,19 @@ class _QuizPageState extends State<QuizPage> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
-                  color: Colors.black,
+                  color: Colors.white,
                 ),
               ),
             ),
           ),
         ),
-        //MARK: This is where the GREEN button go.
         Expanded(
           child: Padding(
             padding: EdgeInsets.all(15.0),
-            child: FlatButton(
-              textColor: Colors.white,
-              color: Colors.green,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  textStyle: TextStyle(color: Colors.white)),
               child: Text(
                 'True',
                 style: TextStyle(
@@ -105,18 +68,23 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                //TODO: The user picked true.
-                checkAnswer(true);
+                if (quizBrain.getQuestionAnswer() == true) {
+                  print('right');
+                } else {
+                  print('wrong');
+                }
+                setState(() {
+                  quizBrain.nextNumber();
+                });
               },
             ),
           ),
         ),
-        //MARK: This is where the RED button go.
         Expanded(
           child: Padding(
             padding: EdgeInsets.all(15.0),
-            child: FlatButton(
-              color: Colors.red,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
               child: Text(
                 'False',
                 style: TextStyle(
@@ -125,16 +93,19 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                //The user picked false.
-                checkAnswer(false);
+                if (quizBrain.getQuestionAnswer() == false) {
+                  print('right');
+                } else {
+                  print('wrong');
+                }
+                setState(() {
+                  quizBrain.nextNumber();
+                });
               },
             ),
           ),
         ),
-        //TODO: Add a Row here as your score keeper
-        Row(
-          children: scoreKeeper,
-        )
+        Row(children: scoreKeeper),
       ],
     );
   }

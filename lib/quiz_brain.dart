@@ -3,36 +3,35 @@ import 'question.dart';
 class QuizBrain {
   int _questionNumber = 0;
 
-  // adding an underscore _ makes the class private _^
   List<Question> _questionBank = [
+    Question('Some cats are actually allergic to humans', true),
+    Question('You can lead a cow down stairs but not up stairs.', false),
+    Question('Approximately one quarter of human bones are in the feet.', true),
+    Question('A slug\'s blood is green.', true),
+    Question('Buzz Aldrin\'s mother\'s maiden name was \"Moon\".', true),
+    Question('It is illegal to pee in the Ocean in Portugal.', true),
     Question(
-        q: 'Do you have a fever, or have you felt feverish recently?', a: true),
-    Question(q: 'Do you have a cough?', a: true),
+        'No piece of square dry paper can be folded in half more than 7 times.',
+        false),
     Question(
-        q: 'I experience shortness of breath or difficulty of breathing',
-        a: true),
+        'In London, UK, if you happen to die in the House of Parliament, you are technically entitled to a state funeral, because the building is considered too sacred a place.',
+        true),
     Question(
-        q: 'Are you having shortness of breath or any difficulty breathing?',
-        a: true),
-    Question(q: 'Do you have chills or repeated shaking with chills?', a: true),
-    Question(q: 'Do you have any muscle pain or body aches?', a: true),
+        'The loudest sound produced by any animal is 188 decibels. That animal is the African Elephant.',
+        false),
     Question(
-        q: 'Do you have any recent onset of headache or sore throat?', a: true),
-    Question(q: 'Have you been experiencing nausea and/or vomiting?', a: true),
-    Question(q: 'Do you have any recent loss of taste or smell?', a: true),
-    Question(q: 'Have you been experiencing fatigue recently?', a: true),
+        'The total surface area of two human lungs is approximately 70 square metres.',
+        true),
+    Question('Google was originally called \"Backrub\".', true),
     Question(
-        q: 'Have you experienced any recent GI upset or diarrhea?', a: true),
+        'Chocolate affects a dog\'s heart and nervous system; a few ounces are enough to kill a small dog.',
+        true),
     Question(
-        q: 'Have you been advised to self-quarantine because of exposure to someone with COVID-19?',
-        a: true),
-    Question(
-        q: 'Have you traveled in the past 14 days to any regions affected by COVID-19?',
-        a: true),
-    Question(q: 'Have you been tested for COVID-19?', a: true),
+        'In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.',
+        true),
   ];
 
-  void nextQuestion() {
+  void nextNumber() {
     if (_questionNumber < _questionBank.length - 1) {
       _questionNumber++;
     }
@@ -42,7 +41,7 @@ class QuizBrain {
     return _questionBank[_questionNumber].questionText;
   }
 
-  bool getCorrectAnswer() {
+  bool getQuestionAnswer() {
     return _questionBank[_questionNumber].questionAnswer;
   }
 }
